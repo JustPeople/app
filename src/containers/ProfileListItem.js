@@ -19,9 +19,9 @@ var Profile = styled.div`
     background-color: ${ProfileBackgroundColor};
     width: 190px;
     transition: all 0.3s;
-    box-shadow: 1px 1px 2px #eee;
+    box-shadow: 2px 2px 5px #bbb;
     &:hover {
-        box-shadow: 1px 1px 5px #888;
+        box-shadow: 2px 2px 5px #888;
     }
 `
 var ProfileAvatarDiv = styled.div`

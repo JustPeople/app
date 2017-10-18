@@ -8,20 +8,23 @@ import ProfileListItem from './ProfileListItem'
 
 var ProfilesGrid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 0.5rem;
 `
 
 var ProfileList = props => {
     return (
         <ProfilesGrid>
-            {props.profiles.map(profile =>
-                <ProfileListItem id={profile.id} />)}
+            {props.profiles.map(profile => (
+                <div style={{ margin: 'auto' }}>
+                    <ProfileListItem id={profile.id} />
+                </div>
+            ))}
         </ProfilesGrid>
     )
 }
 
-export default connect((state) => {
+export default connect(state => {
     var profiles = Selectors.getFilteredProfiles(state)
     return { profiles }
 })(ProfileList)
