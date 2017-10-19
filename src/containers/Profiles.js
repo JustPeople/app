@@ -15,8 +15,8 @@ var ProfilesGrid = styled.div`
 var ProfileList = props => {
     return (
         <ProfilesGrid>
-            {props.profiles.map(profile => (
-                <div style={{ margin: 'auto' }}>
+            {props.profiles.map((profile, i) => (
+                <div key={'' + profile.id + i} style={{ margin: 'auto' }}>
                     <ProfileListItem id={profile.id} />
                 </div>
             ))}

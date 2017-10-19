@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
+import LocationName from './LocationName'
+
 import * as Selectors from '../selectors'
 
 function ProfileBackgroundColor(props) {
@@ -33,13 +35,23 @@ var ProfileInfoDiv = styled.div`
     grid-template-columns: 1fr;
 `
 
+var ProfileAvatar = props => (
+    <ProfileAvatarDiv>
+        <img src={'/assets/profiles/' + props.id + '/avatar.png'} style={{ width: '190px', height: '140px' }} />
+    </ProfileAvatarDiv>
+)
+
 var ProfileListItem = props => {
+    var { id, name, phone, locationId } = props
     return (
         <Profile {...props}>
-            <ProfileAvatar id={props.id} />
+            <ProfileAvatar id={id} />
             <ProfileInfoDiv>
-                <div>{props.name}</div>
-                <div>{props.phone}</div>
+                <div>{name}</div>
+                <div>{phone}</div>
+                <div>
+                    <LocationName id={locationId} />
+                </div>
             </ProfileInfoDiv>
         </Profile>
     )
@@ -51,9 +63,3 @@ export default connect((state, ownProps) => {
         ...profile
     }
 })(ProfileListItem)
-
-var ProfileAvatar = props => (
-    <ProfileAvatarDiv>
-        <img src={'/assets/profiles/' + props.id + '/avatar.png'} style={{ width: '190px', height: '140px' }} />
-    </ProfileAvatarDiv>
-)

@@ -5,7 +5,7 @@ import './App.css'
 
 import store from './store'
 
-import Profiles from './containers/Profiles'
+import Profiles from './components/Profiles'
 
 window.store = store
 
