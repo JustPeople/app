@@ -37,7 +37,7 @@ var ProfileInfoDiv = styled.div`
 
 var ProfileAvatar = props => (
     <ProfileAvatarDiv>
-        <img src={'/assets/profiles/' + props.id + '/avatar.png'} style={{ width: '190px', height: '140px' }} />
+        <img alt="avatar" src={'/assets/profiles/' + props.id + '/avatar.png'} style={{ width: '190px', height: '140px' }} />
     </ProfileAvatarDiv>
 )
 
