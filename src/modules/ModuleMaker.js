@@ -1,6 +1,7 @@
 export default function makeModule(namespace, initialState = {}) {
 
     const SET = namespace + '/SET'
+    const TOGGLE = namespace + '/TOGGLE'
     const REMOVE = namespace + '/REMOVE'
 
     function reducer(state = initialState, action) {
@@ -8,6 +9,11 @@ export default function makeModule(namespace, initialState = {}) {
         switch (type) {
             case SET: {
                 return Object.assign({}, state, payload)
+            }
+            case TOGGLE: {
+                return Object.assign({}, state, {
+                    [payload]: !state[payload]
+                })
             }
             case REMOVE: {
                 var nextState = Object.assign({}, state)
