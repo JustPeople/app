@@ -1,9 +1,9 @@
-export default function makeModule(namespace, defaultState = {}) {
+export default function makeModule(namespace, initialState = {}) {
 
     const SET = namespace + '/SET'
     const REMOVE = namespace + '/REMOVE'
 
-    function reducer(state = defaultState, action) {
+    function reducer(state = initialState, action) {
         var { type, payload } = action
         switch (type) {
             case SET: {
