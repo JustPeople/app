@@ -1,15 +1,13 @@
 import { createStore, combineReducers } from 'redux'
 
 import makeModule from './modules/ModuleMaker'
-import profiles from './modules/Profiles'
+import profiles, { addProfile } from './modules/Profiles'
+import data from './modules/Data'
 
-var Data = makeModule('DATA', {
-    locations: require('./api/locations')
-})
 var Filters = makeModule('FILTERS')
 
 var reducer = combineReducers({
-    data: Data.reducer,
+    data,
     filters: Filters.reducer,
     profiles
 })
