@@ -7,8 +7,8 @@ import store from './store'
 
 import Profiles from './components/Profiles'
 
+import * as DataService from './services/data'
 window.store = store
-
 class App extends Component {
 	render() {
 		return (
