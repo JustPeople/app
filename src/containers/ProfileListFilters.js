@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import * as API from '../api'
+
 var GenderFilter = connect(state => {
     return {}
 }, dispatch => {
@@ -19,7 +21,7 @@ var LocationSelector = connect(state => {
     return { locations }
 }, dispatch => {
     return {
-        onChange(ev) {
+        async onChange(ev) {
             var ids = Array.from(ev.target.selectedOptions).map(option => +option.value)
             if (!ids[0]) {
                 return dispatch({
@@ -27,10 +29,14 @@ var LocationSelector = connect(state => {
                     payload: 'locations'
                 })
             }
+            var first = ids[0]
+
+            var ids = await API.getChildLocations(ids[0])
+
             return dispatch({
                 type: 'FILTERS/SET',
                 payload: {
-                    locations: [].concat(ids)
+                    locations: [first].concat(ids)
                 }
             })
         }
