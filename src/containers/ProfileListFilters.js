@@ -1,19 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Button, Select } from 'antd'
 
 import * as API from '../api'
 
+var ButtonGroup = Button.Group
+var { Option, OptGroup } = Select
+
 var GenderFilter = connect(state => {
-    return {}
+    return {
+        ...state.filters
+    }
 }, dispatch => {
-    return { dispatch }
+    return {
+        toggle(gender) {
+            dispatch({
+                type: 'FILTERS/TOGGLE',
+                payload: gender
+            })
+        }
+    }
 })(props => {
     return (
-        <div style={{ display: 'flex' }}>
-            <div><input type="checkbox" /> M</div>
-            <div><input type="checkbox" /> F</div>
-            <div><input type="checkbox" /> T</div>
-        </div>
+        <ButtonGroup>
+            {['m', 'f', 't'].map(g =>
+                <Button key={g} type={props[g] ? 'primary' : ''}
+                    onClick={ev => props.toggle(g)}
+                    children={g.toUpperCase()}
+                />
+            )}
+        </ButtonGroup>
     )
 })
 var LocationSelector = connect(state => {
@@ -32,48 +48,55 @@ var LocationSelector = connect(state => {
     }
 }, dispatch => {
     return {
-        async onChange(ev) {
-            var ids = Array.from(ev.target.selectedOptions).map(option => +option.value)
-            if (!ids[0]) {
+        async onChange(selected) {
+            var ids = selected.map(option => +option)
+            if (!ids.length) {
                 return dispatch({
                     type: 'FILTERS/REMOVE',
                     payload: 'locations'
                 })
             }
-            var first = ids[0]
 
-            var children = await API.getChildLocations(ids[0])
+            var children = []
+            for (var i in ids) {
+                var id = ids[i]
+                children = children.concat(await API.getChildLocations(id))
+            }
+
+            var locations = ids.concat(children).filter((e, i, arr) => arr.indexOf(e) === i)
 
             return dispatch({
                 type: 'FILTERS/SET',
                 payload: {
-                    locations: [first].concat(children)
+                    locations
                 }
             })
         }
     }
 })(props => {
     return (
-        <select onChange={props.onChange}>
-            <option value="">-- Location --</option>
+        <Select onChange={props.onChange} mode="tags" placeholder="Location" style={{ width: '100%' }}>
             {props.locations.map(location => {
                 var { id, name } = location
                 return (
-                    <option key={id} value={id}>
+                    <Option key={'' + id} value={'' + id}>
                         {name} {props.profileCountByLocation[id]}
-                    </option>
+                    </Option>
                 )
             })}
-
-        </select>
+        </Select>
     )
 })
 
 var Filters = props => {
     return (
-        <div style={{ display: 'flex' }}>
-            <LocationSelector />
-            <GenderFilter />
+        <div>
+            <div>
+                <GenderFilter />
+            </div>
+            <div style={{ padding: '0.5rem' }}>
+                <LocationSelector />
+            </div>
         </div>
     )
 }
