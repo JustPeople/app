@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import logo from './logo.svg'
 import './App.css'
 
 import store from './store'
 
+import * as DataService from './services/data'
+
 import Profiles from './components/Profiles'
 
-import * as DataService from './services/data'
-window.store = store
+Object.assign(window, {
+	DataService,
+	store
+})
+
 class App extends Component {
 	render() {
 		return (

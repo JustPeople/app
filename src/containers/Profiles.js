@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { media, mediaAlt } from '../media'
+import { media } from '../media'
 
 import * as Selectors from '../selectors'
 

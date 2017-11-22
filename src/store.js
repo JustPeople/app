@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux'
 
 import makeModule from './modules/ModuleMaker'
-import profiles, { addProfile } from './modules/Profiles'
+import profiles from './modules/Profiles'
 import data from './modules/Data'
 
 var Filters = makeModule('FILTERS')
