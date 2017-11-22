@@ -21,7 +21,10 @@ export function locationById(state, id) {
     return locations.find(l => l.id === id)
 }
 export function getSelectedGenders(state) {
-    var { genders = [] } = state.filters
+    var genders = []
+    state.filters.m && genders.push('m')
+    state.filters.f && genders.push('f')
+    state.filters.t && genders.push('t')
     return genders
 }
 export function getSelectedLocations(state, options = {}) {
