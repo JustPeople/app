@@ -18,7 +18,18 @@ var GenderFilter = connect(state => {
 })
 var LocationSelector = connect(state => {
     var { locations } = state.data
-    return { locations }
+    var profileCountByLocation = state.profiles
+        .map(profile => profile.locationId)
+        .reduce((sum, id) => {
+            sum[id] = sum[id] || 0
+            sum[id]++
+            return sum
+        }, {})
+
+    return {
+        locations,
+        profileCountByLocation
+    }
 }, dispatch => {
     return {
         async onChange(ev) {
@@ -31,22 +42,29 @@ var LocationSelector = connect(state => {
             }
             var first = ids[0]
 
-            var ids = await API.getChildLocations(ids[0])
+            var children = await API.getChildLocations(ids[0])
 
             return dispatch({
                 type: 'FILTERS/SET',
                 payload: {
-                    locations: [first].concat(ids)
+                    locations: [first].concat(children)
                 }
             })
         }
     }
 })(props => {
     return (
-        <select onChange={props.onChange} multiple size={8}>
+        <select onChange={props.onChange}>
             <option value="">-- Location --</option>
-            {props.locations.map(location =>
-                <option key={location.id} value={location.id}>{location.name}</option>)}
+            {props.locations.map(location => {
+                var { id, name } = location
+                return (
+                    <option key={id} value={id}>
+                        {name} {props.profileCountByLocation[id]}
+                    </option>
+                )
+            })}
+
         </select>
     )
 })
