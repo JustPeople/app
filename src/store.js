@@ -12,6 +12,20 @@ var reducer = combineReducers({
     profiles
 })
 
-var store = createStore(reducer)
+var initialState = {
+    filters: (() => {
+        try {
+            return JSON.parse(localStorage.filters)
+        } catch (err) {
+            return {}
+        }
+    })()
+}
+var store = createStore(reducer, initialState)
 
 export default store
+
+store.subscribe(() => {
+    var state = store.getState()
+    localStorage.filters = JSON.stringify(state.filters)
+})

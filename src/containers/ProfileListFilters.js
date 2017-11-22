@@ -63,7 +63,7 @@ var LocationSelector = connect(state => {
                 children = children.concat(await API.getChildLocations(id))
             }
 
-            var locations = ids.concat(children).filter((e, i, arr) => arr.indexOf(e) === i)
+            var locations = ids.concat(children).filter((e, i, arr) => arr.indexOf(e) === i).sort()
 
             return dispatch({
                 type: 'FILTERS/SET',
