@@ -1,37 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Select } from 'antd'
+import { Select } from 'antd'
 
 import * as API from '../api'
 
-var ButtonGroup = Button.Group
-var { Option, OptGroup } = Select
+import GenderFilter from './ProfileListFilters/GenderFilter'
 
-var GenderFilter = connect(state => {
-    return {
-        ...state.filters
-    }
-}, dispatch => {
-    return {
-        toggle(gender) {
-            dispatch({
-                type: 'FILTERS/TOGGLE',
-                payload: gender
-            })
-        }
-    }
-})(props => {
-    return (
-        <ButtonGroup>
-            {['m', 'f', 't'].map(g =>
-                <Button key={g} type={props[g] ? 'primary' : ''}
-                    onClick={ev => props.toggle(g)}
-                    children={g.toUpperCase()}
-                />
-            )}
-        </ButtonGroup>
-    )
-})
+var { Option } = Select
+
 var LocationSelector = connect(state => {
     var { locations } = state.data
     var profileCountByLocation = state.profiles
