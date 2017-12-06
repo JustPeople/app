@@ -21,11 +21,11 @@ var initialState = {
         }
     })()
 }
-var store = createStore(reducer, initialState)
+var store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 export default store
 
 store.subscribe(() => {
     var state = store.getState()
-    localStorage.filters = JSON.stringify(state.filters)
+    //localStorage.filters = JSON.stringify(state.filters)
 })

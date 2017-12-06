@@ -4,6 +4,7 @@ import { Select } from 'antd'
 
 import * as API from '../api'
 
+import NameFilter from './ProfileListFilters/NameFilter'
 import GenderFilter from './ProfileListFilters/GenderFilter'
 
 var { Option } = Select
@@ -67,7 +68,10 @@ var LocationSelector = connect(state => {
 var Filters = props => {
     return (
         <div>
-            <div>
+            <div style={{ padding: '0.5rem' }}>
+                <NameFilter />
+            </div>
+            <div style={{ padding: '0.5rem' }}>
                 <GenderFilter />
             </div>
             <div style={{ padding: '0.5rem' }}>

@@ -1,3 +1,5 @@
+import Levenshtein from 'levenshtein'
+
 export function getProfileById(state, profileId) {
     var profile = state.profiles.find(p => p.id === profileId)
     return profile
@@ -8,10 +10,18 @@ export function getFilteredProfiles(state) {
         includeChildren: true
     })
 
+    var nameFilter = state.filters.name ? profile => {
+        var name = profile.name.toLowerCase()
+        var filter = state.filters.name.toLowerCase()
+        if (name.indexOf(filter) !== -1) return true
+        var distances = name.split(' ').map(word => (new Levenshtein(word, filter)).distance)
+        return !!(distances.filter(dist => dist < 3)).length
+    } : profile => profile
     var gendersFilter = makeGendersFilter(selectedGenders)
     var locationsFilter = makeLocationsFilter(selectedLocations)
 
     var profiles = state.profiles
+        .filter(nameFilter)
         .filter(gendersFilter)
         .filter(locationsFilter)
     return profiles

@@ -35,11 +35,16 @@ var ProfileInfoDiv = styled.div`
     grid-template-columns: 1fr;
 `
 
-var ProfileAvatar = props => (
+var ProfileAvatar = connect((state, ownProps) => {
+    var profile = state.profiles.find(p => p.id === ownProps.id)
+    return {
+        src: profile.avatar
+    }
+})(props => (
     <ProfileAvatarDiv>
-        <img alt="avatar" src={'/assets/profiles/' + props.id + '/avatar.png'} style={{ width: '190px', height: '140px' }} />
+        <img alt="avatar" src={props.src} style={{ width: '190px', height: '140px' }} />
     </ProfileAvatarDiv>
-)
+))
 
 var ProfileListItem = props => {
     var { id, name, phone, locationId } = props
