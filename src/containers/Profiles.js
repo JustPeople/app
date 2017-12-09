@@ -27,16 +27,21 @@ var ProfilesGrid = styled.div`
         background: green;
     `}
 `
+var ProfileListContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+`
 
 var ProfileList = props => {
     return (
-        <ProfilesGrid>
+        <ProfileListContainer>
             {props.profiles.map((profile, i) => (
-                <div key={'' + profile.id + i} style={{ margin: 'auto' }}>
+                <div key={'' + profile.id + i} style={{ margin: 'auto', marginBottom: '1rem' }}>
                     <ProfileListItem id={profile.id} />
                 </div>
             ))}
-        </ProfilesGrid>
+        </ProfileListContainer>
     )
 }
 

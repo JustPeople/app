@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import LocationName from './LocationName'
@@ -33,6 +34,7 @@ var ProfileInfoDiv = styled.div`
     display: grid;
     grid-area: info;
     grid-template-columns: 1fr;
+    color: #333;
 `
 
 var ProfileAvatar = connect((state, ownProps) => {
@@ -42,7 +44,7 @@ var ProfileAvatar = connect((state, ownProps) => {
     }
 })(props => (
     <ProfileAvatarDiv>
-        <img alt="avatar" src={props.src} style={{ width: '190px', height: '140px' }} />
+        <img alt="avatar" src={props.src} style={{ width: '190px', height: '190px' }} />
     </ProfileAvatarDiv>
 ))
 
@@ -50,14 +52,16 @@ var ProfileListItem = props => {
     var { id, name, phone, locationId } = props
     return (
         <Profile {...props}>
-            <ProfileAvatar id={id} />
-            <ProfileInfoDiv>
-                <div>{name}</div>
-                <div>{phone}</div>
-                <div>
-                    <LocationName id={locationId} />
-                </div>
-            </ProfileInfoDiv>
+            <Link to={'/profiles/' + id}>
+                <ProfileAvatar id={id} />
+                <ProfileInfoDiv>
+                    <strong>{name}</strong>
+                    <div>{phone}</div>
+                    <div>
+                        <LocationName id={locationId} />
+                    </div>
+                </ProfileInfoDiv>
+            </Link>
         </Profile>
     )
 }

@@ -37,5 +37,8 @@ export async function getProfiles() {
 
 export async function getProfileImages(profileId) {
     var data = await axios.get('/api/profiles/' + profileId + '/images').then(res => res.data.data)
+    for (var i = 0; i < 5; i++) {
+        //data = data.concat(data)
+    }
     return data
 }

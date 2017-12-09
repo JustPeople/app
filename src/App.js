@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import {
 	BrowserRouter as Router,
 	Route,
-	Link
+	Link, Redirect
 } from 'react-router-dom'
 import { Layout } from 'antd'
 
@@ -36,6 +36,7 @@ class App extends Component {
 								<Content />
 							</Layout>
 						</Layout>
+						{false && <Redirect to="/" />}
 					</div>
 				</Router>
 			</Provider>
