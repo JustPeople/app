@@ -7,6 +7,7 @@ import Home from './Home'
 import ProfilesGrid from '../containers/Profiles'
 import ProfileContent from '../containers/Profile/Content'
 import ProfileImages from '../containers/Profile/Images'
+import ProfileVideos from '../containers/Profile/Videos'
 
 var { Content } = Layout
 
@@ -25,6 +26,10 @@ export default props => (
             <Route exact path="/profiles/:id/images" render={({ match }) => {
                 var { id } = match.params
                 return <ProfileImages id={+id} />
+            }} />
+            <Route exact path="/profiles/:id/videos" render={({ match }) => {
+                var { id } = match.params
+                return <ProfileVideos id={+id} />
             }} />
         </Content>
     )} />

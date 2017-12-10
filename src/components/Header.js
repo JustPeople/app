@@ -20,9 +20,11 @@ var Menu1 = props => (
         backgroundColor: '#00152a'
     }}>
         <Menu.Item key="home" children={(
-            <Link to="/" children="Home" />
+            <div>
+                <img src="/assets/logo.png" style={{ height: '2rem' }} />
+                <Link to="/" children=" Home" />
+            </div>
         )} />
-        <Menu.Item />
         <Menu.Item key="profiles" children={(
             <Link to="/profiles" children="Perfiles" />
         )} />

@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { getProfileById } from '../selectors';
 axios.defaults.baseURL = '//localhost:3002'
-//axios.defaults.baseURL = 'https://just-people.herokuapp.com'
+axios.defaults.baseURL = 'https://just-people.herokuapp.com'
 
 export async function getLocations() {
     var locations = await axios.get('/api/locations').then(res => res.data.data)
@@ -27,7 +28,7 @@ export async function getProfiles() {
     return profiles.map(p => {
         var { id, name, gender, phone, LocationId, avatar } = p
         return {
-            id: gid++,
+            id,
             name, gender, phone,
             locationId: LocationId,
             avatar
@@ -36,9 +37,12 @@ export async function getProfiles() {
 }
 
 export async function getProfileImages(profileId) {
+    if (getProfileImages.cache[profileId]) return getProfileImages.cache[profileId]
     var data = await axios.get('/api/profiles/' + profileId + '/images').then(res => res.data.data)
+    getProfileImages.cache[profileId] = data
     for (var i = 0; i < 5; i++) {
         //data = data.concat(data)
     }
     return data
 }
+getProfileImages.cache = {}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Card, Carousel } from 'antd'
 import styled from 'styled-components'
 
+import * as Selectors from '../../selectors'
 import * as DataService from '../../services/data'
 
 var Div = styled.div`
@@ -23,7 +24,7 @@ var Div = styled.div`
 
 var ImagesList = connect((state, ownProps) => {
     var profile = state.profiles.find(profile => profile.id === ownProps.id)
-    var images = state.profileImages.filter(image => image.ProfileId === ownProps.id)
+    var images = Selectors.getProfileImages(state, ownProps.id)
     return { ...profile, images }
 })(({ images = [] }) => {
     return (
@@ -64,7 +65,7 @@ class ProfileContent extends React.Component {
 
 export default connect((state, ownProps) => {
     var profile = state.profiles.find(profile => profile.id === ownProps.id)
-    var images = state.profileImages.filter(image => image.ProfileId === ownProps.id)
+    var images = Selectors.getProfileImages(state, ownProps.id)
     return { ...profile, images }
 }, (dispatch, ownProps) => {
     return {

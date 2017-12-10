@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { Card, Carousel } from 'antd'
 import styled from 'styled-components'
 
-import * as Selectors from '../../selectors'
 import * as DataService from '../../services/data'
 
 var Div = styled.div`
@@ -22,17 +21,17 @@ var Div = styled.div`
     }
 `
 
-class ProfileImages extends React.Component {
+class ProfileVideos extends React.Component {
     async componentWillMount() {
         this.props.loadImages()
     }
     render() {
-        var { id, images = [] } = this.props
+        var { id, videos = [] } = this.props
         return (
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                {images.map(img => (
-                    <div style={{ padding: '0.5rem', maxWidth: '300px' }}>
-                        <img src={img.url} style={{ width: '100%' }} />
+                {videos.map(img => (
+                    <div style={{ padding: '0.5rem', width: '300px' }}>
+                        <video src={img.url} style={{ width: '100%' }} controls preload="metadata"/>
                     </div>
                 ))}
             </div>
@@ -42,8 +41,13 @@ class ProfileImages extends React.Component {
 
 export default connect((state, ownProps) => {
     var profile = state.profiles.find(profile => profile.id === ownProps.id)
-    var images = Selectors.getProfileImages(state, ownProps.id)
-    return { ...profile, images }
+    var videos = state.profileImages
+        .filter(media => media.role === 'video')
+        .filter(media => media.ProfileId === ownProps.id)
+    return {
+        ...profile,
+        videos
+    }
 }, (dispatch, ownProps) => {
     return {
         async loadImages(images) {
@@ -51,4 +55,4 @@ export default connect((state, ownProps) => {
             return DataService.loadProfileImages(id)
         }
     }
-})(ProfileImages)
+})(ProfileVideos)

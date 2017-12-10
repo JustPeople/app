@@ -4,6 +4,18 @@ export function getProfileById(state, profileId) {
     var profile = state.profiles.find(p => p.id === profileId)
     return profile
 }
+export function getProfileMedia(state, profileId, mediaType) {
+    var media = state.profileImages
+        .filter(media => media.role === mediaType)
+        .filter(media => media.ProfileId === profileId)
+    return media
+}
+export function getProfileImages(state, profileId) {
+    return getProfileMedia(state, profileId, 'image')
+}
+export function getProfileVideos(state, profileId) {
+    return getProfileMedia(state, profileId, 'video')
+}
 export function getFilteredProfiles(state) {
     var selectedGenders = getSelectedGenders(state)
     var selectedLocations = getSelectedLocations(state, {
