@@ -10,6 +10,7 @@ import ProfileListItem from './ProfileListItem'
 
 //var media = mediaAlt
 
+// eslint-disable-next-line
 var ProfilesGrid = styled.div`
     display: grid;
     grid-gap: 0.5rem;

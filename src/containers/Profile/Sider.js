@@ -1,14 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Avatar, Card, Carousel, Icon, Menu } from 'antd'
-import styled from 'styled-components'
+import { Avatar,  Icon, Menu } from 'antd'
 
 import Text from '../Text'
 import LocationName from '../LocationName'
-
-import * as API from '../../api'
-import * as Profiles from '../../modules/Profiles'
 
 class ProfileSider extends React.Component {
     render() {

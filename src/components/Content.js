@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-
+import React from 'react'
+import { Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import Home from './Home'

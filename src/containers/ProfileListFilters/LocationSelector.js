@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Select } from 'antd'
+import { Select } from 'antd'
 
 import * as API from '../../api'
 

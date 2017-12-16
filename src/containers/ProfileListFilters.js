@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Select } from 'antd'
+import { Menu } from 'antd'
 
 import * as API from '../api'
 
@@ -8,8 +8,6 @@ import Text from './Text'
 import NameFilter from './ProfileListFilters/NameFilter'
 import GenderFilter from './ProfileListFilters/GenderFilter'
 import LocationSelector from './ProfileListFilters/LocationSelector'
-
-var { Option } = Select
 
 function makeLocationFilter(locationId) {
     return connect(state => {

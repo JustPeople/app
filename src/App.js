@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import {
 	BrowserRouter as Router,
-	Route,
-	Link, Redirect
+	Redirect
 } from 'react-router-dom'
 import { Layout } from 'antd'
 

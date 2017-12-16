@@ -1,9 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Route, Switch, Link } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
-
-import * as API from '../api'
+import React from 'react'
+import { Route } from 'react-router-dom'
+import { Layout } from 'antd'
 
 import ProfileListFilters from '../containers/ProfileListFilters'
 import ProfileSider from '../containers/Profile/Sider'

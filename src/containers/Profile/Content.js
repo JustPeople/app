@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Card, Carousel } from 'antd'
+import { Carousel } from 'antd'
 import styled from 'styled-components'
 
 import * as Selectors from '../../selectors'
@@ -34,7 +33,7 @@ var ImagesList = connect((state, ownProps) => {
             justifyContent: 'space-around'
         }}>
             {images.map(img => {
-                return <img src={img.url} style={{ height: '10vh' }} />
+                return <img src={img.url} style={{ height: '10vh' }} alt={img.url} />
             })}
         </div>
     )
@@ -54,7 +53,7 @@ class ProfileContent extends React.Component {
                 <Carousel autoplay autoplaySpeed={1000 * 5}>
                     {images.map(img => (
                         <div style={{ height: '70vh' }}>
-                            <img src={img.url} style={{ height: '100%', margin: 'auto' }} />
+                            <img src={img.url} style={{ height: '100%', margin: 'auto' }} alt={img.url} />
                         </div>
                     ))}
                 </Carousel>

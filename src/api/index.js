@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { getProfileById } from '../selectors';
-axios.defaults.baseURL = '//localhost:3002'
+//axios.defaults.baseURL = '//localhost:3002'
 axios.defaults.baseURL = 'https://just-people.herokuapp.com'
 
 export async function getLocations() {
@@ -20,11 +19,6 @@ export async function getProfiles() {
     var data = await axios.get('/api/profiles').then(res => res.data.data)
     var profiles = data
 
-    for (var i = 0; i < 10; i++) {
-        //profiles = profiles.concat(data)
-    }
-
-    var gid = 1
     return profiles.map(p => {
         var { id, name, gender, phone, LocationId, avatar } = p
         return {

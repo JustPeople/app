@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Select } from 'antd'
+import { Button } from 'antd'
 
 var ButtonGroup = Button.Group
 

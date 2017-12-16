@@ -25,8 +25,9 @@ export async function loadProfileImages(id) {
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)) }
 
+// eslint-disable-next-line
 var constructor = (async () => {
     loadProfiles()
-    //await sleep(1000 * 1)
+    await sleep(1000 * 1)
     loadLocations()
 })()
