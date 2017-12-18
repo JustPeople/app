@@ -4,9 +4,11 @@ import { Layout } from 'antd'
 
 import Home from './Home'
 import ProfilesGrid from '../containers/Profiles'
+import ProfilesMap from '../containers/ProfilesMap'
 import ProfileContent from '../containers/Profile/Content'
 import ProfileImages from '../containers/Profile/Images'
 import ProfileVideos from '../containers/Profile/Videos'
+import ProfileMap, { ProfileMarker } from '../containers/Profile/Map'
 
 var { Content } = Layout
 
@@ -18,6 +20,8 @@ export default props => (
         }}>
             <Route exact path="/" component={Home} />
             <Route exact path="/profiles" component={ProfilesGrid} />
+            <Route exact path="/profiles/map" render={props =>
+                <ProfilesMap id={5} />} />
             <Route exact path="/profiles/:id" render={({ match }) => {
                 var { id } = match.params
                 return <ProfileContent id={+id} />
@@ -29,6 +33,14 @@ export default props => (
             <Route exact path="/profiles/:id/videos" render={({ match }) => {
                 var { id } = match.params
                 return <ProfileVideos id={+id} />
+            }} />
+            <Route exact path="/profiles/:id/map" render={({ match }) => {
+                var { id } = match.params
+                return (
+                    <ProfileMap id={+id}>
+                        <ProfileMarker id={+id} />
+                    </ProfileMap>
+                )
             }} />
         </Content>
     )} />

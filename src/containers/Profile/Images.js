@@ -13,7 +13,7 @@ class ProfileImages extends React.Component {
         return (
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {images.map(img => (
-                    <div style={{ padding: '0.5rem', maxWidth: '300px' }}>
+                    <div key={img.url} style={{ padding: '0.5rem', maxWidth: '300px' }}>
                         <img src={img.url} style={{ width: '100%' }} alt={img.url} />
                     </div>
                 ))}

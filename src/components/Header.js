@@ -17,14 +17,17 @@ var Menu1 = props => (
         color: 'white',
         backgroundColor: '#00152a'
     }}>
+        <Menu.Item key="brand" children={(
+            <img src="/assets/logo.png" style={{ height: '2rem' }} alt={'logo'} />
+        )} />
         <Menu.Item key="home" children={(
-            <div>
-                <img src="/assets/logo.png" style={{ height: '2rem' }} alt={'logo'} />
-                <Link to="/" children=" Home" />
-            </div>
+            <Link to="/" children=" Home" />
         )} />
         <Menu.Item key="profiles" children={(
             <Link to="/profiles" children="Perfiles" />
+        )} />
+        <Menu.Item key="profilesMap" children={(
+            <Link to="/profiles/map" children="Mapa" />
         )} />
         <Menu.Item key="contact" children={(
             <Link to="/contact" children="Publicar" />

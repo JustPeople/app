@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Avatar,  Icon, Menu } from 'antd'
+import { Icon, Menu } from 'antd'
 
+import Avatar from './Avatar'
 import Text from '../Text'
 import LocationName from '../LocationName'
 
 class ProfileSider extends React.Component {
     render() {
-        var { id, avatar } = this.props
+        var { id } = this.props
         return (
             <Menu>
                 <Menu.Item>
@@ -20,11 +21,7 @@ class ProfileSider extends React.Component {
                 <div style={{ height: '1rem', backgroundColor: '#00152a' }} />
                 <Menu.ItemGroup>
                     <Menu.Item style={{ height: '7rem' }}>
-                        <Avatar src={avatar} size="large" style={{
-                            height: '7rem',
-                            width: '7rem',
-                            borderRadius: '3.5rem'
-                        }} />
+                        <Avatar id={id} size={7} />
                     </Menu.Item>
                     <Menu.Item>{this.props.name}</Menu.Item>
                     <Menu.Item>
@@ -54,6 +51,12 @@ class ProfileSider extends React.Component {
                     <div>
                         <Icon type="video-camera" />
                         <Link to={'/profiles/' + id + '/videos'} children={<Text code="MENU_PROFILE_VIDEOS" />} />
+                    </div>
+                </Menu.Item>
+                <Menu.Item>
+                    <div>
+                        <Icon type="environment" />
+                        <Link to={'/profiles/' + id + '/map'} children={<Text code="MENU_PROFILE_MAP" />} />
                     </div>
                 </Menu.Item>
             </Menu>
