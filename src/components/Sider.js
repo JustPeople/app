@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import ProfileListFilters from '../containers/ProfileListFilters'
@@ -10,8 +10,11 @@ var { Sider } = Layout
 export default props => (
     <Sider>
         <Route exact path="/profiles" component={ProfileListFilters} />
-        <Route path="/profiles/:id" render={({ match }) => {
-            return <ProfileSider id={+match.params.id} />
-        }} />
+        <Switch>
+            <Route path="/profiles/map" render={({ match }) => 'map-sider'} />
+            <Route path="/profiles/:id" render={({ match }) => {
+                return <ProfileSider id={+match.params.id} />
+            }} />
+        </Switch>
     </Sider>
 )
