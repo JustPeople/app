@@ -13,9 +13,9 @@ import store from './store'
 
 import * as DataService from './services/data'
 
+import Content from './components/Content'
 import Header from './components/Header'
 import Sider from './components/Sider'
-import Content from './components/Content'
 
 Object.assign(window, {
 	DataService,
