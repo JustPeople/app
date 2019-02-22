@@ -12,6 +12,7 @@ import './App.css'
 import store from './store'
 
 import * as DataService from './services/data'
+import * as db from './services/db'
 
 import Content from './components/Content'
 import Header from './components/Header'
@@ -23,6 +24,7 @@ Object.assign(window, {
 })
 
 class App extends Component {
+	async componentDidMount() {}
 	render() {
 		return (
 			<Provider store={store}>

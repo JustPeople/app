@@ -1,6 +1,8 @@
 import axios from 'axios'
-axios.defaults.baseURL = '//localhost:3002'
-//axios.defaults.baseURL = 'https://just-people.herokuapp.com'
+/*
+axios.defaults.baseURL = 'https://just-people.herokuapp.com'
+*/
+//axios.defaults.baseURL = '//localhost:3001'
 
 export async function getLocations() {
     var locations = await axios.get('/api/locations').then(res => res.data.data)

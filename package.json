@@ -5,6 +5,8 @@
   "dependencies": {
     "antd": "^3.0.0",
     "axios": "^0.16.2",
+    "dexie": "^2.0.4",
+    "greenlet": "^1.0.1",
     "levenshtein": "^1.0.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
